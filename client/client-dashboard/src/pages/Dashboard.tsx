@@ -6,6 +6,7 @@ import BudgetChart from "../components/dashboard/BudgetChart";
 import { useNational } from "../hooks/useNational";
 import { useProvince } from "../hooks/useProvince";
 import { useNationalByProvince } from "../hooks/useNationalByProvince";
+import RevitalizationBarChart from "../components/dashboard/RevitalizationBarChart";
 
 const Dashboard: React.FC = () => {
   const [selectedProvince, setSelectedProvince] = useState<number | null>(null);
@@ -65,6 +66,20 @@ const Dashboard: React.FC = () => {
         { name: "SMA", value: national.sma.anggaran },
       ]
     : [];
+
+  // 🔹 Data untuk bar chart
+  const dualChartData = selectedProvince
+    ? province?.regencyData.map((r) => ({
+        name: r.regencyName,
+        sekolah: r.totalSekolah,
+        anggaran: r.totalAnggaran,
+      })) ?? []
+    : nationalByProvince.map((p) => ({
+        name: p.provinceName,
+        sekolah: p.paud.jumlah + p.sd.jumlah + p.smp.jumlah + p.sma.jumlah,
+        anggaran:
+          p.paud.anggaran + p.sd.anggaran + p.smp.anggaran + p.sma.anggaran,
+      }));
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -146,6 +161,25 @@ const Dashboard: React.FC = () => {
             data={chartData}
           />
         </div>
+      </div>
+
+      {/* Bar Chart */}
+      <div className="col-span-2">
+        <RevitalizationBarChart
+          data={dualChartData}
+          title={
+            selectedProvince
+              ? `Banyaknya Revitalisasi Sekolah Berdasarkan Anggaran Revitalisasi – Provinsi ${
+                  province?.province ?? ""
+                }`
+              : "Banyaknya Revitalisasi Sekolah Berdasarkan Anggaran Revitalisasi – Nasional"
+          }
+          subtitle={
+            selectedProvince
+              ? "Jumlah sekolah dan anggaran per kabupaten/kota di provinsi terpilih"
+              : "Jumlah sekolah dan anggaran per provinsi"
+          }
+        />
       </div>
     </div>
   );
