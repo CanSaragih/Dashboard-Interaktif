@@ -1283,8 +1283,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "102", "PROVINSI": "Sulawesi Tengah" },
-      "id": "102"
+      "properties": { "KODE_PROV": "254", "PROVINSI": "Sulawesi Tengah" },
+      "id": "254"
     },
     {
       "type": "Feature",
@@ -1540,8 +1540,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "76", "PROVINSI": "Sulawesi Barat" },
-      "id": "76"
+      "properties": { "KODE_PROV": "258", "PROVINSI": "Sulawesi Barat" },
+      "id": "258"
     },
     {
       "type": "Feature",
@@ -2189,8 +2189,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "103", "PROVINSI": "Sulawesi Selatan" },
-      "id": "103"
+      "properties": { "KODE_PROV": "255", "PROVINSI": "Sulawesi Selatan" },
+      "id": "255"
     },
     {
       "type": "Feature",
@@ -2731,8 +2731,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "112", "PROVINSI": "Papua Tengah" },
-      "id": "112"
+      "properties": { "KODE_PROV": "264", "PROVINSI": "Papua Tengah" },
+      "id": "264"
     },
     {
       "type": "Feature",
@@ -4021,8 +4021,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "114", "PROVINSI": "Papua Barat Daya" },
-      "id": "114"
+      "properties": { "KODE_PROV": "266", "PROVINSI": "Papua Barat Daya" },
+      "id": "266"
     },
     {
       "type": "Feature",
@@ -4236,8 +4236,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "105", "PROVINSI": "Gorontalo" },
-      "id": "105"
+      "properties": { "KODE_PROV": "257", "PROVINSI": "Gorontalo" },
+      "id": "257"
     },
     {
       "type": "Feature",
@@ -5616,8 +5616,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "111", "PROVINSI": "Papua Selatan" },
-      "id": "111"
+      "properties": { "KODE_PROV": "263", "PROVINSI": "Papua Selatan" },
+      "id": "263"
     },
     {
       "type": "Feature",
@@ -5690,10 +5690,10 @@
         ]
       },
       "properties": {
-        "KODE_PROV": "90",
+        "KODE_PROV": "242",
         "PROVINSI": "Daerah Istimewa Yogyakarta"
       },
-      "id": "90"
+      "id": "242"
     },
     {
       "type": "Feature",
@@ -6288,8 +6288,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "79", "PROVINSI": "Sumatera Barat" },
-      "id": "79"
+      "properties": { "KODE_PROV": "231", "PROVINSI": "Sumatera Barat" },
+      "id": "231"
     },
     {
       "type": "Feature",
@@ -6332,8 +6332,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "87", "PROVINSI": "DKI Jakarta" },
-      "id": "87"
+      "properties": { "KODE_PROV": "239", "PROVINSI": "DKI Jakarta" },
+      "id": "239"
     },
     {
       "type": "Feature",
@@ -8497,8 +8497,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "107", "PROVINSI": "Maluku" },
-      "id": "107"
+      "properties": { "KODE_PROV": "259", "PROVINSI": "Maluku" },
+      "id": "259"
     },
     {
       "type": "Feature",
@@ -8795,8 +8795,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "83", "PROVINSI": "Bengkulu" },
-      "id": "83"
+      "properties": { "KODE_PROV": "235", "PROVINSI": "Bengkulu" },
+      "id": "235"
     },
     {
       "type": "Feature",
@@ -9173,8 +9173,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "84", "PROVINSI": "Lampung" },
-      "id": "84"
+      "properties": { "KODE_PROV": "236", "PROVINSI": "Lampung" },
+      "id": "236"
     },
     {
       "type": "Feature",
@@ -10070,8 +10070,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "109", "PROVINSI": "Papua" },
-      "id": "109"
+      "properties": { "KODE_PROV": "261", "PROVINSI": "Papua" },
+      "id": "261"
     },
     {
       "type": "Feature",
@@ -11167,8 +11167,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "86", "PROVINSI": "Kepulauan Riau" },
-      "id": "86"
+      "properties": { "KODE_PROV": "238", "PROVINSI": "Kepulauan Riau" },
+      "id": "238"
     },
     {
       "type": "Feature",
@@ -11714,8 +11714,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "94", "PROVINSI": "Nusa Tenggara Barat" },
-      "id": "94"
+      "properties": { "KODE_PROV": "246", "PROVINSI": "Nusa Tenggara Barat" },
+      "id": "246"
     },
     {
       "type": "Feature",
@@ -12027,8 +12027,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "15", "PROVINSI": "Jambi" },
-      "id": "15"
+      "properties": { "KODE_PROV": "233", "PROVINSI": "Jambi" },
+      "id": "233"
     },
     {
       "type": "Feature",
@@ -12168,8 +12168,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "93", "PROVINSI": "Bali" },
-      "id": "93"
+      "properties": { "KODE_PROV": "245", "PROVINSI": "Bali" },
+      "id": "245"
     },
     {
       "type": "Feature",
@@ -12866,8 +12866,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "91", "PROVINSI": "Jawa Timur" },
-      "id": "91"
+      "properties": { "KODE_PROV": "243", "PROVINSI": "Jawa Timur" },
+      "id": "243"
     },
     {
       "type": "Feature",
@@ -13685,8 +13685,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "114", "PROVINSI": "Papua Barat Daya" },
-      "id": "114"
+      "properties": { "KODE_PROV": "262", "PROVINSI": "Papua Barat" },
+      "id": "262"
     },
     {
       "type": "Feature",
@@ -14339,8 +14339,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "78", "PROVINSI": "Sumatera Utara" },
-      "id": "78"
+      "properties": { "KODE_PROV": "230", "PROVINSI": "Sumatera Utara" },
+      "id": "230"
     },
     {
       "type": "Feature",
@@ -15158,8 +15158,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "104", "PROVINSI": "Sulawesi Tenggara" },
-      "id": "104"
+      "properties": { "KODE_PROV": "256", "PROVINSI": "Sulawesi Tenggara" },
+      "id": "256"
     },
     {
       "type": "Feature",
@@ -16418,8 +16418,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "95", "PROVINSI": "Nusa Tenggara Timur" },
-      "id": "95"
+      "properties": { "KODE_PROV": "247", "PROVINSI": "Nusa Tenggara Timur" },
+      "id": "247"
     },
     {
       "type": "Feature",
@@ -16830,8 +16830,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "98", "PROVINSI": "Kalimantan Selatan" },
-      "id": "98"
+      "properties": { "KODE_PROV": "250", "PROVINSI": "Kalimantan Selatan" },
+      "id": "250"
     },
     {
       "type": "Feature",
@@ -17371,8 +17371,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "77", "PROVINSI": "Aceh" },
-      "id": "77"
+      "properties": { "KODE_PROV": "229", "PROVINSI": "Aceh" },
+      "id": "229"
     },
     {
       "type": "Feature",
@@ -17988,8 +17988,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "97", "PROVINSI": "Kalimantan Tengah" },
-      "id": "97"
+      "properties": { "KODE_PROV": "249", "PROVINSI": "Kalimantan Tengah" },
+      "id": "249"
     },
     {
       "type": "Feature",
@@ -18458,8 +18458,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "113", "PROVINSI": "Papua Pegunungan" },
-      "id": "113"
+      "properties": { "KODE_PROV": "265", "PROVINSI": "Papua Pegunungan" },
+      "id": "265"
     },
     {
       "type": "Feature",
@@ -18846,10 +18846,10 @@
         ]
       },
       "properties": {
-        "KODE_PROV": "85",
+        "KODE_PROV": "237",
         "PROVINSI": "Kepulauan Bangka Belitung"
       },
-      "id": "85"
+      "id": "237"
     },
     {
       "type": "Feature",
@@ -19364,8 +19364,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "82", "PROVINSI": "Sumatera Selatan" },
-      "id": "82"
+      "properties": { "KODE_PROV": "234", "PROVINSI": "Sumatera Selatan" },
+      "id": "234"
     },
     {
       "type": "Feature",
@@ -19587,8 +19587,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "92", "PROVINSI": "Banten" },
-      "id": "92"
+      "properties": { "KODE_PROV": "244", "PROVINSI": "Banten" },
+      "id": "244"
     },
     {
       "type": "Feature",
@@ -20073,8 +20073,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "101", "PROVINSI": "Sulawesi Utara" },
-      "id": "101"
+      "properties": { "KODE_PROV": "253", "PROVINSI": "Sulawesi Utara" },
+      "id": "253"
     },
     {
       "type": "Feature",
@@ -20901,8 +20901,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "100", "PROVINSI": "Kalimantan Utara" },
-      "id": "100"
+      "properties": { "KODE_PROV": "252", "PROVINSI": "Kalimantan Utara" },
+      "id": "252"
     },
     {
       "type": "Feature",
@@ -22194,8 +22194,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "99", "PROVINSI": "Kalimantan Timur" },
-      "id": "99"
+      "properties": { "KODE_PROV": "251", "PROVINSI": "Kalimantan Timur" },
+      "id": "251"
     },
     {
       "type": "Feature",
@@ -22544,8 +22544,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "89", "PROVINSI": "Jawa Tengah" },
-      "id": "89"
+      "properties": { "KODE_PROV": "241", "PROVINSI": "Jawa Tengah" },
+      "id": "241"
     },
     {
       "type": "Feature",
@@ -23769,8 +23769,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "108", "PROVINSI": "Maluku Utara" },
-      "id": "108"
+      "properties": { "KODE_PROV": "260", "PROVINSI": "Maluku Utara" },
+      "id": "260"
     },
     {
       "type": "Feature",
@@ -24822,8 +24822,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "96", "PROVINSI": "Kalimantan Barat" },
-      "id": "96"
+      "properties": { "KODE_PROV": "248", "PROVINSI": "Kalimantan Barat" },
+      "id": "248"
     },
     {
       "type": "Feature",
@@ -25065,8 +25065,8 @@
           ]
         ]
       },
-      "properties": { "KODE_PROV": "88", "PROVINSI": "Jawa Barat" },
-      "id": "88"
+      "properties": { "KODE_PROV": "240", "PROVINSI": "Jawa Barat" },
+      "id": "240"
     }
   ]
 }

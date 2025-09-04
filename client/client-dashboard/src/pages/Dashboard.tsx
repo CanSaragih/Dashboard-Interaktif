@@ -12,11 +12,14 @@ import { useDashboardData } from "../hooks/useDashboardData";
 import BackButton from "../components/dashboard/BackButton";
 import RegencyModal from "../components/dashboard/RegencyModal";
 import { getRegency } from "../services/api";
+import type { RegencyData } from "../types";
+import ProvinceFilterBox from "../components/dashboard/ProvinceFilterBox";
 
 const Dashboard: React.FC = () => {
   const [selectedProvince, setSelectedProvince] = useState<number | null>(null);
+  const [selectedProvinceName, setSelectedProvinceName] = useState<string>("");
   const [selectedRegency, setSelectedRegency] = useState<number | null>(null);
-  const [regencyData, setRegencyData] = useState<any>(null);
+  const [regencyData, setRegencyData] = useState<RegencyData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loadingRegency, setLoadingRegency] = useState(false);
 
@@ -35,10 +38,18 @@ const Dashboard: React.FC = () => {
 
   const handleProvinceClick = (provinceId: number) => {
     setSelectedProvince(provinceId);
+    // Cari nama provinsi dari data nationalByProvince
+    const province = nationalByProvince.find(
+      (p) => p.provinceId === provinceId
+    );
+    if (province) {
+      setSelectedProvinceName(province.provinceName);
+    }
   };
 
-  const handleBackToNational = () => {
+  const handleResetFilter = () => {
     setSelectedProvince(null);
+    setSelectedProvinceName("");
     setSelectedRegency(null);
   };
 
@@ -71,13 +82,13 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header dengan tombol kembali */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-gray-800">
-          Dashboard Revitalisasi Sekolah
-        </h1>
-        {selectedProvince && <BackButton onClick={handleBackToNational} />}
-      </div>
+      {/* Province Filter Box - Muncul hanya ketika provinsi dipilih */}
+      {selectedProvince && (
+        <ProvinceFilterBox
+          selectedProvince={selectedProvinceName}
+          onResetFilter={handleResetFilter}
+        />
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Peta Indonesia */}

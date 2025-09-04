@@ -3,6 +3,7 @@ import type {
   NationalProvinceRow,
   NationalSummary,
   ProvinceDetail,
+  RegencyData,
 } from "../types";
 
 const api = axios.create({
@@ -28,7 +29,7 @@ export const getNationalByProvince = async (): Promise<
   return res.data;
 };
 
-export const getRegency = async (regencyId: number): Promise<any> => {
-  const res = await api.get(`/regency/${regencyId}`);
+export const getRegency = async (regencyId: number): Promise<RegencyData> => {
+  const res = await api.get<RegencyData>(`/regency/${regencyId}`);
   return res.data;
 };

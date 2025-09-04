@@ -13,13 +13,7 @@ import {
   ComposedChart,
   Line,
 } from "recharts";
-
-interface RegencySummary {
-  paud: { jumlah: number; anggaran: number };
-  sd: { jumlah: number; anggaran: number };
-  smp: { jumlah: number; anggaran: number };
-  sma: { jumlah: number; anggaran: number };
-}
+import type { RegencySummary } from "../../types";
 
 interface Props {
   isOpen: boolean;
@@ -36,7 +30,7 @@ interface Props {
 const RegencyModal: React.FC<Props> = ({ isOpen, onClose, data }) => {
   if (!isOpen || !data) return null;
 
-  // Siapkan data untuk chart
+  //  data untuk chart
   const chartData = [
     {
       name: "PAUD",

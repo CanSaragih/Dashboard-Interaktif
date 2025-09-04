@@ -40,3 +40,18 @@ export interface NationalProvinceRow {
   smp: { jumlah: number; anggaran: number };
   sma: { jumlah: number; anggaran: number };
 }
+
+export interface RegencySummary {
+  paud: { jumlah: number; anggaran: number };
+  sd: { jumlah: number; anggaran: number };
+  smp: { jumlah: number; anggaran: number };
+  sma: { jumlah: number; anggaran: number };
+}
+
+export interface RegencyData {
+  province: string;
+  regency: string;
+  summary: RegencySummary;
+  total: number;
+  totalAnggaran: number;
+}
