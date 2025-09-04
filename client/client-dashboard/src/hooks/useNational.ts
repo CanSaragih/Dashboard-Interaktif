@@ -11,8 +11,6 @@ export const useNational = () => {
     const fetchData = async () => {
       try {
         const result = await getNational();
-        console.log("API RESULT >>>>>>", result);
-
         setData(result);
       } catch (err) {
         console.log(err);

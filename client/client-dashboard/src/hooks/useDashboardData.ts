@@ -17,6 +17,8 @@ export const useDashboardData = (
         jenjang: r.jenjang,
         jumlah: r.totalSekolah,
         anggaran: r.totalAnggaran,
+        regencyId: r.regencyId,
+        regencyName: r.regencyName,
       }));
     }
     return nationalByProvince

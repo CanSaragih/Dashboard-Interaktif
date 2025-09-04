@@ -55,7 +55,7 @@ const MapIndonesia: React.FC<Props> = ({
       center={[-2, 118]}
       zoom={5}
       className="w-full h-[400px]"
-      style={{ borderRadius: "8px", overflow: "hidden" }}
+      style={{ borderRadius: "8px", overflow: "hidden", zIndex: 10 }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

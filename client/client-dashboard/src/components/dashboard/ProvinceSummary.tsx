@@ -18,10 +18,8 @@ const ProvinceSummarySection: React.FC<Props> = ({ data, loading = false }) => {
   if (!data || data.length === 0)
     return <p className="text-red-500">Tidak ada data</p>;
 
-  // urutan jenjang
   const jenjangOrder = ["paud", "sd", "smp", "sma"];
 
-  // style per jenjang
   const jenjangStyles: Record<string, { color: string; border: string }> = {
     paud: { color: "bg-green-50", border: "border-l-green-500" },
     sd: { color: "bg-yellow-50", border: "border-l-yellow-500" },
@@ -29,7 +27,6 @@ const ProvinceSummarySection: React.FC<Props> = ({ data, loading = false }) => {
     sma: { color: "bg-red-50", border: "border-l-red-500" },
   };
 
-  // hitung total sekolah & total anggaran
   const totalSekolah = data.reduce(
     (acc, item) => acc + (item.totalSekolah || 0),
     0

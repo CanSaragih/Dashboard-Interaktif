@@ -10,9 +10,15 @@ import RevitalizationBarChart from "../components/dashboard/RevitalizationBarCha
 import ProvinceSummarySection from "../components/dashboard/ProvinceSummary";
 import { useDashboardData } from "../hooks/useDashboardData";
 import BackButton from "../components/dashboard/BackButton";
+import RegencyModal from "../components/dashboard/RegencyModal";
+import { getRegency } from "../services/api";
 
 const Dashboard: React.FC = () => {
   const [selectedProvince, setSelectedProvince] = useState<number | null>(null);
+  const [selectedRegency, setSelectedRegency] = useState<number | null>(null);
+  const [regencyData, setRegencyData] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loadingRegency, setLoadingRegency] = useState(false);
 
   const { data: national, loading: nationalLoading } = useNational();
   const { data: province, loading: provinceLoading } =
@@ -33,6 +39,26 @@ const Dashboard: React.FC = () => {
 
   const handleBackToNational = () => {
     setSelectedProvince(null);
+    setSelectedRegency(null);
+  };
+
+  const handleRegencyClick = async (regencyId: number) => {
+    setLoadingRegency(true);
+    try {
+      const data = await getRegency(regencyId);
+      setRegencyData(data);
+      setIsModalOpen(true);
+    } catch (error) {
+      console.error("❌ API Error:", error);
+    } finally {
+      setLoadingRegency(false);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedRegency(null);
+    setRegencyData(null);
   };
 
   if (nationalLoading || provincesLoading) {
@@ -111,10 +137,12 @@ const Dashboard: React.FC = () => {
               "Daftar jumlah sekolah yang direvitalisasi beserta anggaran"
             }
             rows={tableRows}
+            onRegencyClick={selectedProvince ? handleRegencyClick : undefined}
+            isProvinceSelected={!!selectedProvince}
           />
         </div>
 
-        {/* Chart Donut - 1 kolom */}
+        {/* Chart Donut kolom */}
         <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
           <BudgetChart
             title={
@@ -128,7 +156,7 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Bar Chart Full Width */}
+      {/* Bar Chart  */}
       <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
         <RevitalizationBarChart
           data={dualChartData}
@@ -146,6 +174,13 @@ const Dashboard: React.FC = () => {
           }
         />
       </div>
+
+      {/* Modal untuk Detail Kabupaten/Kota */}
+      <RegencyModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        data={regencyData}
+      />
     </div>
   );
 };

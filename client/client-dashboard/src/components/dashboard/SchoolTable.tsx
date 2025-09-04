@@ -1,31 +1,45 @@
 import React from "react";
 
+interface TableRow {
+  provinsi: string;
+  jenjang: string;
+  jumlah: number;
+  anggaran: number;
+  regencyId?: number;
+  regencyName?: string;
+}
+
 interface Props {
   title: string;
   subtitle: string;
-  rows: {
-    provinsi: string;
-    jenjang: string;
-    jumlah: number;
-    anggaran: number;
-  }[];
+  rows: TableRow[];
+  onRegencyClick?: (regencyId: number, regencyName: string) => void;
+  isProvinceSelected?: boolean;
 }
 
-const SchoolTable: React.FC<Props> = ({ title, subtitle, rows }) => {
-  // Group rows by province
+const SchoolTable: React.FC<Props> = ({
+  title,
+  subtitle,
+  rows,
+  onRegencyClick,
+  isProvinceSelected = false,
+}) => {
   const groupedData = rows.reduce((acc, row) => {
-    if (!acc[row.provinsi]) {
-      acc[row.provinsi] = [];
+    const key = isProvinceSelected
+      ? row.regencyName || row.provinsi
+      : row.provinsi;
+    if (!acc[key]) {
+      acc[key] = [];
     }
-    acc[row.provinsi].push(row);
+    acc[key].push(row);
     return acc;
-  }, {} as Record<string, typeof rows>);
+  }, {} as Record<string, TableRow[]>);
 
   return (
     <div className="overflow-hidden">
       {/* Header */}
       <div className="p-6 border-b border-gray-200">
-        <h2 className=" font-semibold text-gray-800">{title}</h2>
+        <h2 className="font-semibold text-gray-800">{title}</h2>
         <p className="text-base text-gray-500">{subtitle}</p>
       </div>
 
@@ -35,8 +49,8 @@ const SchoolTable: React.FC<Props> = ({ title, subtitle, rows }) => {
           {/* Table Header */}
           <thead>
             <tr className="bg-gray-50 border-b border-gray-200">
-              <th className="px-6  text-left text-sm font-semibold text-gray-900 w-1/4">
-                Provinsi
+              <th className="px-6 text-left text-sm font-semibold text-gray-900 w-1/4">
+                {isProvinceSelected ? "Kabupaten/Kota" : "Provinsi"}
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 w-1/4">
                 Bentuk Pendidikan
@@ -52,18 +66,40 @@ const SchoolTable: React.FC<Props> = ({ title, subtitle, rows }) => {
 
           {/* Table Body */}
           <tbody className="divide-y divide-gray-100">
-            {Object.entries(groupedData).map(([province, provinceRows]) => (
-              <React.Fragment key={province}>
-                {provinceRows.map((row, idx) => (
+            {Object.entries(groupedData).map(([name, nameRows]) => (
+              <React.Fragment key={name}>
+                {nameRows.map((row, idx) => (
                   <tr
-                    key={`${province}-${idx}`}
+                    key={`${name}-${idx}`}
                     className="hover:bg-gray-50/50 transition-colors"
+                    onClick={() => {
+                      if (
+                        isProvinceSelected &&
+                        onRegencyClick &&
+                        row.regencyId
+                      ) {
+                        // KIRIM YANG BENAR: regencyId dan regencyName
+                        onRegencyClick(row.regencyId, row.regencyName || name);
+                      }
+                    }}
+                    style={{
+                      cursor:
+                        isProvinceSelected && onRegencyClick
+                          ? "pointer"
+                          : "default",
+                    }}
                   >
                     <td className="px-6 py-4 text-sm text-gray-900 font-medium">
                       {idx === 0 ? (
-                        <div className="font-semibold text-gray-900">
-                          {row.provinsi}
-                        </div>
+                        isProvinceSelected ? (
+                          <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
+                            {name}
+                          </span>
+                        ) : (
+                          <div className="font-semibold text-gray-900">
+                            {name}
+                          </div>
+                        )
                       ) : (
                         ""
                       )}

@@ -27,3 +27,8 @@ export const getNationalByProvince = async (): Promise<
   const res = await api.get<NationalProvinceRow[]>("/national/by-province");
   return res.data;
 };
+
+export const getRegency = async (regencyId: number): Promise<any> => {
+  const res = await api.get(`/regency/${regencyId}`);
+  return res.data;
+};
