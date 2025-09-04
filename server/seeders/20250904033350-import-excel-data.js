@@ -70,9 +70,13 @@ module.exports = {
           ? row[`anggaran_rev_${jenjang}`].toString().replace(/\D/g, "")
           : "0";
 
+        // handle khusus SD karena kolom beda
+        const jumlahKey =
+          jenjang === "sd" ? "Jml_revi_sd" : `Jml_rev_${jenjang}`;
+
         revitalizationsData.push({
           jenjang,
-          jumlah: parseInt(row[`Jml_rev_${jenjang}`]) || 0,
+          jumlah: parseInt(row[jumlahKey]) || 0,
           anggaran: cleanAnggaran ? BigInt(cleanAnggaran) : 0n,
           regencyId: regencyMap[row.kode_kab],
           createdAt: new Date(),
@@ -80,7 +84,6 @@ module.exports = {
         });
       });
     });
-
     await queryInterface.bulkInsert("Revitalizations", revitalizationsData, {});
 
     console.log("✅ Insert data from CSV completed");
