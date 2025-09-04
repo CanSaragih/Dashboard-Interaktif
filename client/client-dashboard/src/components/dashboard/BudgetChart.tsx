@@ -71,8 +71,8 @@ const BudgetChart: React.FC<Props> = ({ data, title, subtitle }) => {
     <div className="bg-white">
       {/* Header */}
       <div className="mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">{title}</h2>
-        <p className="text-sm text-gray-600">{subtitle}</p>
+        <h2 className="font-semibold text-zinc-800">{title}</h2>
+        <p className="text-base text-gray-500">{subtitle}</p>
       </div>
 
       {/* Chart Container */}

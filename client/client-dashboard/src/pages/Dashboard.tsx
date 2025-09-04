@@ -7,138 +7,103 @@ import { useNational } from "../hooks/useNational";
 import { useProvince } from "../hooks/useProvince";
 import { useNationalByProvince } from "../hooks/useNationalByProvince";
 import RevitalizationBarChart from "../components/dashboard/RevitalizationBarChart";
+import ProvinceSummarySection from "../components/dashboard/ProvinceSummary";
+import { useDashboardData } from "../hooks/useDashboardData";
+import BackButton from "../components/dashboard/BackButton";
 
 const Dashboard: React.FC = () => {
   const [selectedProvince, setSelectedProvince] = useState<number | null>(null);
 
-  const { data: national } = useNational();
-  const { data: province } = useProvince(selectedProvince);
-  const { data: nationalByProvince } = useNationalByProvince();
+  const { data: national, loading: nationalLoading } = useNational();
+  const { data: province, loading: provinceLoading } =
+    useProvince(selectedProvince);
+  const { data: nationalByProvince, loading: provincesLoading } =
+    useNationalByProvince();
 
-  //  Table rows
-  const tableRows = selectedProvince
-    ? province?.regencyData.map((r) => ({
-        provinsi: r.regencyName,
-        jenjang: r.jenjang,
-        jumlah: r.totalSekolah,
-        anggaran: r.totalAnggaran,
-      })) ?? []
-    : nationalByProvince
-        .map((p) => [
-          {
-            provinsi: p.provinceName,
-            jenjang: "PAUD",
-            jumlah: p.paud.jumlah,
-            anggaran: p.paud.anggaran,
-          },
-          {
-            provinsi: p.provinceName,
-            jenjang: "SD",
-            jumlah: p.sd.jumlah,
-            anggaran: p.sd.anggaran,
-          },
-          {
-            provinsi: p.provinceName,
-            jenjang: "SMP",
-            jumlah: p.smp.jumlah,
-            anggaran: p.smp.anggaran,
-          },
-          {
-            provinsi: p.provinceName,
-            jenjang: "SMA",
-            jumlah: p.sma.jumlah,
-            anggaran: p.sma.anggaran,
-          },
-        ])
-        .flat();
+  const { tableRows, chartData, dualChartData } = useDashboardData(
+    selectedProvince,
+    national,
+    province,
+    nationalByProvince
+  );
 
-  //  Chart data
-  const chartData = selectedProvince
-    ? province?.summary.map((s) => ({
-        name: s.jenjang.toUpperCase(),
-        value: s.totalAnggaran,
-      })) ?? []
-    : national
-    ? [
-        { name: "PAUD", value: national.paud.anggaran },
-        { name: "SD", value: national.sd.anggaran },
-        { name: "SMP", value: national.smp.anggaran },
-        { name: "SMA", value: national.sma.anggaran },
-      ]
-    : [];
+  const handleProvinceClick = (provinceId: number) => {
+    setSelectedProvince(provinceId);
+  };
 
-  // 🔹 Data untuk bar chart
-  const dualChartData = selectedProvince
-    ? province?.regencyData.map((r) => ({
-        name: r.regencyName,
-        sekolah: r.totalSekolah,
-        anggaran: r.totalAnggaran,
-      })) ?? []
-    : nationalByProvince.map((p) => ({
-        name: p.provinceName,
-        sekolah: p.paud.jumlah + p.sd.jumlah + p.smp.jumlah + p.sma.jumlah,
-        anggaran:
-          p.paud.anggaran + p.sd.anggaran + p.smp.anggaran + p.sma.anggaran,
-      }));
+  const handleBackToNational = () => {
+    setSelectedProvince(null);
+  };
+
+  if (nationalLoading || provincesLoading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="text-gray-500">Memuat data...</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-      {/* Peta Indonesia */}
-      <div className="bg-white p-6 rounded-2xl border border-zinc-200">
-        <h2 className="font-semibold text-zinc-800">
-          Persebaran Program Revitalisasi Sekolah Nasional
-        </h2>
-        <p className="text-base text-zinc-500 mb-6">
-          Menampilkan distribusi program revitalisasi sekolah di seluruh
-          provinsi
-        </p>
-        <MapIndonesia onProvinceClick={(id) => setSelectedProvince(id)} />
+    <div className="space-y-6">
+      {/* Header dengan tombol kembali */}
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-gray-800">
+          Dashboard Revitalisasi Sekolah
+        </h1>
+        {selectedProvince && <BackButton onClick={handleBackToNational} />}
       </div>
 
-      {/* Data Ringkasan */}
-      <div className="bg-white p-6 rounded-2xl border border-zinc-200">
-        <h2 className="font-semibold text-zinc-800 ">
-          {selectedProvince
-            ? `Data Ringkasan - Provinsi ${province?.province ?? ""}`
-            : "Data Ringkasan - Nasional"}
-        </h2>
-        <p className="text-base text-zinc-500 mb-4">
-          Detail alokasi anggaran untuk setiap tingkat pendidikan
-        </p>
-        {!selectedProvince ? (
-          <NationalSummarySection />
-        ) : province ? (
-          <div className="grid grid-cols-2 gap-4">
-            {province.summary.map((s, idx) => (
-              <div
-                key={idx}
-                className="p-4 rounded-lg border bg-gray-50 shadow-sm"
-              >
-                <p className="text-sm font-medium text-gray-600">
-                  Revitalisasi {s.jenjang.toUpperCase()}
-                </p>
-                <p className="text-lg font-bold text-gray-800">
-                  {s.totalSekolah.toLocaleString("id-ID")}
-                </p>
-                <p className="text-sm text-gray-500">
-                  Rp {s.totalAnggaran.toLocaleString("id-ID")}
-                </p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="text-gray-500">Memuat data provinsi...</p>
-        )}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Peta Indonesia */}
+        <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
+          <h2 className="font-semibold text-zinc-800 text-lg ">
+            Persebaran Program Revitalisasi Sekolah Nasional
+          </h2>
+          <p className="text-base text-zinc-500 mb-6">
+            Menampilkan distribusi program revitalisasi sekolah di seluruh
+            provinsi
+          </p>
+          <MapIndonesia
+            onProvinceClick={handleProvinceClick}
+            selectedProvince={selectedProvince}
+          />
+        </div>
+
+        {/* Data Ringkasan */}
+        <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
+          <h2 className="font-semibold text-zinc-800 text-lg">
+            {selectedProvince
+              ? `Data Ringkasan - Provinsi ${province?.province || ""}`
+              : "Data Ringkasan - Nasional"}
+          </h2>
+          <p className="text-base text-zinc-500 mb-6">
+            Detail alokasi anggaran untuk setiap tingkat pendidikan
+          </p>
+
+          {!selectedProvince ? (
+            <NationalSummarySection />
+          ) : provinceLoading ? (
+            <div className="text-gray-500">Memuat data provinsi...</div>
+          ) : province ? (
+            <ProvinceSummarySection
+              data={province?.summary || []}
+              loading={provinceLoading}
+            />
+          ) : (
+            <div className="text-red-500">Gagal memuat data provinsi</div>
+          )}
+        </div>
       </div>
 
-      {/* Tabel  */}
-      <div className="col-span-2 grid grid-cols-3 gap-4">
-        <div className="col-span-2 border border-zinc-200 rounded-2xl">
+      {/* Tabel dan Chart */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Tabel - 2 kolom */}
+        <div className="lg:col-span-2 bg-white rounded-2xl border border-zinc-200 shadow-sm overflow-hidden">
           <SchoolTable
             title={
               selectedProvince
                 ? `Tabel Revitalisasi Sekolah Provinsi – ${
-                    province?.province ?? ""
+                    province?.province || ""
                   }`
                 : "Tabel Revitalisasi Sekolah Berdasarkan Provinsi"
             }
@@ -149,12 +114,12 @@ const Dashboard: React.FC = () => {
           />
         </div>
 
-        {/* Chart */}
-        <div className="col-span-1 border border-zinc-200 rounded-2xl p-6 ">
+        {/* Chart Donut - 1 kolom */}
+        <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
           <BudgetChart
             title={
               selectedProvince
-                ? `Anggaran Revitalisasi – Provinsi ${province?.province ?? ""}`
+                ? `Anggaran Revitalisasi – Provinsi ${province?.province || ""}`
                 : "Anggaran Revitalisasi – Nasional"
             }
             subtitle={"Per-tingkat pendidikan"}
@@ -163,14 +128,14 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Bar Chart */}
-      <div className="col-span-2">
+      {/* Bar Chart Full Width */}
+      <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
         <RevitalizationBarChart
           data={dualChartData}
           title={
             selectedProvince
               ? `Banyaknya Revitalisasi Sekolah Berdasarkan Anggaran Revitalisasi – Provinsi ${
-                  province?.province ?? ""
+                  province?.province || ""
                 }`
               : "Banyaknya Revitalisasi Sekolah Berdasarkan Anggaran Revitalisasi – Nasional"
           }
