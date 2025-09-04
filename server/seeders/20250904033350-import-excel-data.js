@@ -66,10 +66,14 @@ module.exports = {
 
     regencyRows.forEach((row) => {
       ["paud", "sd", "smp", "sma"].forEach((jenjang) => {
+        const cleanAnggaran = row[`anggaran_rev_${jenjang}`]
+          ? row[`anggaran_rev_${jenjang}`].toString().replace(/\D/g, "")
+          : "0";
+
         revitalizationsData.push({
           jenjang,
           jumlah: parseInt(row[`Jml_rev_${jenjang}`]) || 0,
-          anggaran: parseInt(row[`anggaran_rev_${jenjang}`]) || 0,
+          anggaran: cleanAnggaran ? BigInt(cleanAnggaran) : 0n,
           regencyId: regencyMap[row.kode_kab],
           createdAt: new Date(),
           updatedAt: new Date(),
