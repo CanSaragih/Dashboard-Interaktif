@@ -92,8 +92,8 @@ const Dashboard: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Peta Indonesia */}
-        <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
-          <h2 className="font-semibold text-zinc-800 text-lg ">
+        <div className="bg-white p-6 rounded-2xl border border-zinc-200 ">
+          <h2 className="font-semibold text-zinc-800 ">
             Persebaran Program Revitalisasi Sekolah Nasional
           </h2>
           <p className="text-base text-zinc-500 mb-6">
@@ -107,8 +107,8 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Data Ringkasan */}
-        <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
-          <h2 className="font-semibold text-zinc-800 text-lg">
+        <div className="bg-white p-6 rounded-2xl border border-zinc-200 ">
+          <h2 className="font-semibold text-zinc-800">
             {selectedProvince
               ? `Data Ringkasan - Provinsi ${province?.province || ""}`
               : "Data Ringkasan - Nasional"}
